@@ -200,6 +200,7 @@
 # if __name__ == "__main__":
 #     EvoLinkApp().mainloop()
 
+from builtins import super
 import tkinter as tk
 from tkinter import ttk, messagebox
 from datetime import datetime
