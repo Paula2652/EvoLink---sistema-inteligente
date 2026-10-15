@@ -31,7 +31,7 @@
 
 # janela.mainloop()
 
-from evolink_menu import EvoLinkApp
+from evolink_menu import EvoLinkApp # pyright: ignore[reportMissingImports]
 
 
 def main():
