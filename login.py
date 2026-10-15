@@ -1,122 +1,3 @@
-# import customtkinter as ctk
-# from tkinter import messagebox
-
-# USUARIO_CORRETO = "admin"
-# SENHA_CORRETA = "1234"
-
-
-# def mostrar_login(janela, abrir_menu):
-
-#     # Remove os componentes da tela anterior
-#     for componente in janela.winfo_children():
-#         componente.destroy()
-
-#     janela.title("Login - EvoLink")
-
-#     # Cartão central
-#     cartao = ctk.CTkFrame(janela, corner_radius=16)
-#     cartao.place(relx=0.5, rely=0.5, anchor="center")
-
-#     # Logo
-#     ctk.CTkLabel(
-#         cartao,
-#         text="EL",
-#         font=("Arial", 22, "bold"),
-#         text_color="white",
-#         fg_color="#3b6fe0",
-#         corner_radius=14,
-#         width=56,
-#         height=56
-#     ).pack(padx=50, pady=(35, 10))
-
-#     # Título
-#     ctk.CTkLabel(
-#         cartao,
-#         text="EvoLink",
-#         font=("Arial", 28, "bold")
-#     ).pack()
-
-#     ctk.CTkLabel(
-#         cartao,
-#         text="Suporte Técnico e Diagnóstico",
-#         text_color="gray"
-#     ).pack(pady=(0, 22))
-
-#     # Campo de usuário
-#     usuario = ctk.CTkEntry(
-#         cartao,
-#         width=280,
-#         height=38,
-#         placeholder_text="Digite seu usuário"
-#     )
-#     usuario.pack(pady=8)
-
-#     # Campo de senha
-#     senha = ctk.CTkEntry(
-#         cartao,
-#         width=280,
-#         height=38,
-#         placeholder_text="Digite sua senha",
-#         show="*"
-#     )
-#     senha.pack(pady=8)
-
-#     # Mostrar / ocultar a senha
-#     def alternar_senha():
-#         senha.configure(show="" if ver_senha.get() else "*")
-
-#     ver_senha = ctk.CTkCheckBox(
-#         cartao,
-#         text="Mostrar senha",
-#         command=alternar_senha
-#     )
-#     ver_senha.pack(pady=(4, 0))
-
-#     # Função para validar o login
-#     def validar_login(evento=None):
-#         nome_usuario = usuario.get().strip()
-#         senha_digitada = senha.get()
-
-#         if nome_usuario == "" or senha_digitada == "":
-#             messagebox.showwarning(
-#                 "Atenção",
-#                 "Preencha o usuário e a senha."
-#             )
-#             return
-
-#         if nome_usuario == USUARIO_CORRETO and senha_digitada == SENHA_CORRETA:
-#             abrir_menu()
-#         else:
-#             messagebox.showerror(
-#                 "Erro",
-#                 "Usuário ou senha incorretos!"
-#             )
-#             senha.delete(0, "end")
-
-#     # Apertar Enter também faz o login
-#     usuario.bind("<Return>", validar_login)
-#     senha.bind("<Return>", validar_login)
-
-#     # Botão de entrar
-#     ctk.CTkButton(
-#         cartao,
-#         text="Entrar",
-#         width=280,
-#         height=40,
-#         font=("Arial", 14, "bold"),
-#         command=validar_login
-#     ).pack(pady=(20, 10))
-
-#     # Informações de acesso
-#     ctk.CTkLabel(
-#         cartao,
-#         text="Usuário: admin | Senha: 1234",
-#         text_color="gray"
-#     ).pack(pady=(5, 30))
-
-#     usuario.focus()
-
-
 import tkinter as tk
 from tkinter import ttk, messagebox
 from datetime import datetime
@@ -143,6 +24,116 @@ COLORS = {
 FONT = "Segoe UI"
 USUARIO_CORRETO = "admin"
 SENHA_CORRETA = "1234"
+
+DIAGNOSTICOS = {
+    "Computador lento": {
+        "causas": [
+            "Muitos programas abertos ao mesmo tempo",
+            "Pouca memória RAM disponível",
+            "Disco quase cheio",
+        ],
+        "sugestoes": [
+            "Fechar programas desnecessários",
+            "Limpar arquivos temporários",
+            "Reiniciar o computador",
+        ],
+    },
+    "Internet sem conexão": {
+        "causas": [
+            "Cabo de rede desconectado",
+            "Roteador travado ou fora do ar",
+            "Configuração de Wi-Fi incorreta",
+        ],
+        "sugestoes": [
+            "Verificar o cabo de rede",
+            "Conferir a conexão Wi-Fi",
+            "Reiniciar o roteador",
+        ],
+    },
+    "Impressora não imprime": {
+        "causas": [
+            "Impressora sem papel ou tinta",
+            "Fila de impressão travada",
+            "Driver desatualizado",
+        ],
+        "sugestoes": [
+            "Verificar papel e nível de tinta",
+            "Limpar a fila de impressão",
+            "Reinstalar o driver da impressora",
+        ],
+    },
+    "Teclado ou mouse com defeito": {
+        "causas": [
+            "Cabo USB solto ou danificado",
+            "Pilhas fracas (dispositivo sem fio)",
+            "Porta USB com defeito",
+        ],
+        "sugestoes": [
+            "Reconectar o cabo em outra porta USB",
+            "Trocar as pilhas do dispositivo",
+            "Testar em outro computador",
+        ],
+    },
+    "Monitor sem imagem": {
+        "causas": [
+            "Cabo de vídeo desconectado",
+            "Monitor desligado ou em economia de energia",
+            "Placa de vídeo com defeito",
+        ],
+        "sugestoes": [
+            "Verificar o cabo de vídeo",
+            "Checar o botão de energia do monitor",
+            "Testar o monitor em outra máquina",
+        ],
+    },
+    "Computador não liga": {
+        "causas": [
+            "Cabo de energia desconectado",
+            "Fonte de alimentação com defeito",
+            "Tomada sem energia",
+        ],
+        "sugestoes": [
+            "Verificar o cabo de energia",
+            "Testar em outra tomada",
+            "Chamar o técnico para revisar a fonte",
+        ],
+    },
+    "Erro ao abrir programas": {
+        "causas": [
+            "Arquivo do programa corrompido",
+            "Falta de atualização do sistema",
+            "Conflito com antivírus",
+        ],
+        "sugestoes": [
+            "Reiniciar o computador",
+            "Reinstalar o programa",
+            "Atualizar o sistema operacional",
+        ],
+    },
+    "Espaço insuficiente no disco": {
+        "causas": [
+            "Muitos arquivos temporários acumulados",
+            "Downloads e instaladores antigos",
+            "Lixeira cheia",
+        ],
+        "sugestoes": [
+            "Esvaziar a lixeira",
+            "Remover arquivos temporários",
+            "Desinstalar programas não utilizados",
+        ],
+    },
+}
+PROBLEMAS = [
+    "Computador lento",
+    "Computador não liga",
+    "Internet sem conexão",
+    "Impressora não imprime",
+    "Teclado ou mouse com defeito",
+    "Monitor sem imagem",
+    "Erro ao abrir programas",
+    "Espaço insuficiente no disco",
+    "Outros (especificar)",
+]
 
 
 class EvoLinkApp(tk.Tk):
@@ -426,20 +417,36 @@ class EvoLinkApp(tk.Tk):
                  bg=COLORS["surface"], fg=COLORS["text"], font=(FONT, 9, "bold")).pack(anchor="w")
         tk.Label(left, text=f"{ticket['setor']}  ·  {ticket['data']}",
                  bg=COLORS["surface"], fg=COLORS["muted"], font=(FONT, 8)).pack(anchor="w", pady=(3, 0))
+        if ticket.get("problema"):
+            tk.Label(left, text=f"Problema: {ticket['problema']}", bg=COLORS["surface"],
+                     fg=COLORS["orange_dark"], font=(FONT, 8)).pack(anchor="w", pady=(3, 0))
         status_color = COLORS["green"] if ticket["status"] == "Resolvido" else COLORS["orange_dark"]
         tk.Label(row, text=ticket["status"], bg=COLORS["surface_green"] if ticket["status"] == "Resolvido" else COLORS["surface_soft"],
                  fg=status_color, font=(FONT, 8, "bold"), padx=9, pady=5).pack(side="right")
         tk.Frame(parent, bg=COLORS["line"], height=1).pack(fill="x")
 
     def _page_new_ticket(self):
-        self._heading("Nova chamada", "Descreva a solicitação para encaminhá-la à equipe de suporte.")
-        card = self._card(self.content, padx=22, pady=20)
-        card.pack(fill="x", anchor="n")
-        self._form_label(card, "Assunto")
+        self._heading("Nova chamada", "Descreva o problema e consulte uma orientação inicial antes do atendimento.")
+
+        # Área rolável para que o formulário completo também caiba em telas menores.
+        form_area = tk.Frame(self.content, bg=COLORS["background"])
+        form_area.pack(fill="both", expand=True)
+        canvas = tk.Canvas(form_area, bg=COLORS["background"], highlightthickness=0)
+        scrollbar = ttk.Scrollbar(form_area, orient="vertical", command=canvas.yview)
+        canvas.configure(yscrollcommand=scrollbar.set)
+        scrollbar.pack(side="right", fill="y")
+        canvas.pack(side="left", fill="both", expand=True)
+
+        card = self._card(canvas, padx=22, pady=18)
+        card_window = canvas.create_window((0, 0), window=card, anchor="nw")
+        card.bind("<Configure>", lambda _event: canvas.configure(scrollregion=canvas.bbox("all")))
+        canvas.bind("<Configure>", lambda event: canvas.itemconfigure(card_window, width=event.width))
+
+        self._form_label(card, "Assunto do chamado")
         subject = tk.Entry(card, bg="#FCFBFD", fg=COLORS["text"], insertbackground=COLORS["text"],
                            relief="flat", highlightthickness=1, highlightbackground=COLORS["line"],
                            highlightcolor=COLORS["orange"], font=(FONT, 10))
-        subject.pack(fill="x", ipady=9, pady=(0, 14))
+        subject.pack(fill="x", ipady=9, pady=(0, 13))
 
         row = tk.Frame(card, bg=COLORS["surface"])
         row.pack(fill="x")
@@ -449,37 +456,137 @@ class EvoLinkApp(tk.Tk):
         col2.pack(side="left", fill="x", expand=True, padx=(10, 0))
         self._form_label(col1, "Setor")
         sector = ttk.Combobox(col1, values=self.sectors, state="readonly", style="Evo.TCombobox")
-        sector.pack(fill="x", pady=(0, 14))
+        sector.pack(fill="x", pady=(0, 13))
         if self.sectors:
             sector.current(0)
         self._form_label(col2, "Prioridade")
         priority = ttk.Combobox(col2, values=["Baixa", "Média", "Alta"], state="readonly", style="Evo.TCombobox")
-        priority.pack(fill="x", pady=(0, 14))
+        priority.pack(fill="x", pady=(0, 13))
         priority.current(1)
 
-        self._form_label(card, "Descrição")
-        description = tk.Text(card, height=5, bg="#FCFBFD", fg=COLORS["text"],
+        self._form_label(card, "Problema encontrado")
+        problem = ttk.Combobox(
+            card, values=["Selecione um problema...", *PROBLEMAS],
+            state="readonly", style="Evo.TCombobox"
+        )
+        self.problem_selector = problem
+        problem.pack(fill="x", pady=(0, 9))
+
+        other_area = tk.Frame(card, bg=COLORS["surface"])
+        self._form_label(other_area, "Especifique o problema")
+        other_problem = tk.Entry(
+            other_area, bg="#FCFBFD", fg=COLORS["text"], insertbackground=COLORS["text"],
+            relief="flat", highlightthickness=1, highlightbackground=COLORS["line"],
+            highlightcolor=COLORS["orange"], font=(FONT, 10),
+        )
+        other_problem.pack(fill="x", ipady=8, pady=(0, 10))
+        self.other_problem_entry = other_problem
+
+        diagnosis = tk.Frame(card, bg="#F0FAF6", padx=14, pady=12,
+                             highlightthickness=1, highlightbackground="#D6EEE4")
+        diagnosis.pack(fill="x", pady=(3, 14))
+        diagnosis_title = tk.Label(
+            diagnosis, text="Diagnóstico inteligente", bg="#F0FAF6",
+            fg=COLORS["green_dark"], font=(FONT, 10, "bold"), anchor="w",
+        )
+        self.diagnosis_title = diagnosis_title
+        diagnosis_title.pack(fill="x", anchor="w")
+        diagnosis_content = tk.Frame(diagnosis, bg="#F0FAF6")
+        diagnosis_content.pack(fill="x", pady=(7, 0))
+
+        def update_diagnosis(_event=None):
+            selected = problem.get()
+            if selected == "Outros (especificar)":
+                if not other_area.winfo_manager():
+                    other_area.pack(fill="x", before=diagnosis, pady=(0, 3))
+            elif other_area.winfo_manager():
+                other_area.pack_forget()
+
+            for child in diagnosis_content.winfo_children():
+                child.destroy()
+
+            if selected in DIAGNOSTICOS:
+                diagnosis_title.configure(text=f"Diagnóstico inteligente — {selected}")
+                columns = tk.Frame(diagnosis_content, bg="#F0FAF6")
+                columns.pack(fill="x")
+                for column in range(2):
+                    columns.grid_columnconfigure(column, weight=1, uniform="diagnostico")
+                for column, heading, key, accent in [
+                    (0, "Possíveis causas", "causas", COLORS["orange_dark"]),
+                    (1, "Sugestões iniciais", "sugestoes", COLORS["green_dark"]),
+                ]:
+                    section = tk.Frame(columns, bg="#F0FAF6")
+                    section.grid(row=0, column=column, sticky="nw", padx=(0, 12 if column == 0 else 0))
+                    tk.Label(section, text=heading, bg="#F0FAF6", fg=COLORS["text"],
+                             font=(FONT, 9, "bold")).pack(anchor="w", pady=(0, 4))
+                    for item in DIAGNOSTICOS[selected][key]:
+                        tk.Label(section, text=f"•  {item}", bg="#F0FAF6", fg=COLORS["muted"],
+                                 font=(FONT, 8), wraplength=300, justify="left").pack(anchor="w", pady=2)
+                tk.Label(diagnosis_content,
+                         text="Orientação inicial: o técnico deve confirmar a causa antes de executar alterações.",
+                         bg="#F0FAF6", fg=COLORS["muted"], font=(FONT, 8), wraplength=680,
+                         justify="left").pack(anchor="w", pady=(8, 0))
+            elif selected == "Outros (especificar)":
+                diagnosis_title.configure(text="Diagnóstico inteligente — análise personalizada")
+                tk.Label(diagnosis_content,
+                         text="Informe o problema específico. Ainda não há uma regra automática para este caso; descreva os sintomas para orientar a avaliação técnica.",
+                         bg="#F0FAF6", fg=COLORS["muted"], font=(FONT, 9), wraplength=690,
+                         justify="left").pack(anchor="w")
+            else:
+                diagnosis_title.configure(text="Diagnóstico inteligente")
+                tk.Label(diagnosis_content,
+                         text="Selecione um problema para ver causas possíveis e sugestões iniciais.",
+                         bg="#F0FAF6", fg=COLORS["muted"], font=(FONT, 9),
+                         wraplength=690, justify="left").pack(anchor="w")
+
+        problem.bind("<<ComboboxSelected>>", update_diagnosis)
+        problem.current(0)
+        update_diagnosis()
+
+        self._form_label(card, "Descrição adicional")
+        description = tk.Text(card, height=4, bg="#FCFBFD", fg=COLORS["text"],
                               insertbackground=COLORS["text"], relief="flat", wrap="word",
                               highlightthickness=1, highlightbackground=COLORS["line"],
                               highlightcolor=COLORS["orange"], font=(FONT, 9), padx=10, pady=9)
-        description.pack(fill="x", pady=(0, 16))
+        description.pack(fill="x", pady=(0, 14))
         actions = tk.Frame(card, bg=COLORS["surface"])
         actions.pack(fill="x")
-        self._button(actions, "Criar chamada", lambda: self._create_ticket(
-            subject.get(), sector.get(), priority.get(), description.get("1.0", "end-1c"))).pack(side="right")
+        self._button(
+            actions, "Criar chamada",
+            lambda: self._create_ticket(
+                subject.get(), sector.get(), priority.get(), description.get("1.0", "end-1c"),
+                problem.get(), other_problem.get(),
+            ),
+        ).pack(side="right")
         self._button(actions, "Cancelar", lambda: self.show_page("Menu Principal"), "soft").pack(side="right", padx=(0, 9))
 
-    def _create_ticket(self, subject, sector, priority, description):
+    def _create_ticket(self, subject, sector, priority, description, selected_problem, custom_problem=""):
         if not subject.strip():
-            messagebox.showwarning("Campo obrigatório", "Informe o assunto da chamada.", parent=self)
+            messagebox.showwarning("Campo obrigatório", "Informe o assunto do chamado.", parent=self)
             return
+        if selected_problem in ("", "Selecione um problema..."):
+            messagebox.showwarning("Campo obrigatório", "Selecione o problema encontrado.", parent=self)
+            return
+        if selected_problem == "Outros (especificar)" and not custom_problem.strip():
+            messagebox.showwarning("Campo obrigatório", "Especifique o problema selecionado em Outros.", parent=self)
+            return
+
+        issue = custom_problem.strip() if selected_problem == "Outros (especificar)" else selected_problem
+        diagnosis = DIAGNOSTICOS.get(selected_problem, {"causas": [], "sugestoes": []})
         now = datetime.now()
         self.tickets.insert(0, {
-            "id": f"CH-{1043 + len(self.tickets)}", "assunto": subject.strip(),
-            "setor": sector or "Geral", "status": "Aberto", "prioridade": priority or "Média",
-            "data": now.strftime("Hoje, %H:%M"), "descricao": description.strip(),
+            "id": f"CH-{1043 + len(self.tickets)}",
+            "assunto": subject.strip(),
+            "setor": sector or "Geral",
+            "status": "Aberto",
+            "prioridade": priority or "Média",
+            "data": now.strftime("Hoje, %H:%M"),
+            "problema": issue,
+            "causas": diagnosis["causas"].copy(),
+            "sugestoes": diagnosis["sugestoes"].copy(),
+            "descricao": description.strip(),
         })
-        messagebox.showinfo("Chamada criada", "A chamada foi registrada com sucesso.", parent=self)
+        messagebox.showinfo("Chamada criada", "A chamada foi registrada com o problema e o diagnóstico inicial.", parent=self)
         self.show_page("Consultar Chamadas")
 
     def _page_new_sector(self):
@@ -534,7 +641,7 @@ class EvoLinkApp(tk.Tk):
             child.destroy()
         headers = tk.Frame(parent, bg=COLORS["surface"])
         headers.pack(fill="x", pady=(0, 6))
-        for col, title, width in [("ID", 12), ("Assunto", 30), ("Setor", 16), ("Status", 17), ("Prioridade", 14)]:
+        for title, width in [("ID", 12), ("Assunto", 30), ("Setor", 16), ("Status", 17), ("Prioridade", 14)]:
             tk.Label(headers, text=title.upper(), bg=COLORS["surface"], fg=COLORS["muted"],
                      font=(FONT, 8, "bold"), width=width, anchor="w").pack(side="left")
         q = query.casefold()
